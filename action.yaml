@@ -1,0 +1,35 @@
+name: "Google Cloud Functions destroy action"
+description: "Setup gcloud auth and destroy a Google cloud function"
+inputs:
+  service_account_key:
+    description: "Google Service Key"
+    required: true
+    default: ""
+  project:
+    description: "Google Project"
+    required: true
+  name:
+    description: "Cloud Function name"
+    required: true
+  region:
+    description: "Google Region"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Authenticate with Google Cloud
+      shell: bash
+      run: |
+        echo ${{ inputs.service_account_key }} | base64 -d > /tmp/key.json
+        gcloud auth activate-service-account --key-file=/tmp/key.json
+
+    - name: Configure project and region
+      shell: bash
+      run: |
+        gcloud --quiet config set project ${{ inputs.project }}
+        gcloud --quiet config set compute/region ${{ inputs.region }}
+
+    - name: Destroy Google Cloud Function
+      shell: bash
+      run: |
+        gcloud --quiet functions delete ${{ inputs.name }}
