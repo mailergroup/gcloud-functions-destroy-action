@@ -32,4 +32,4 @@ runs:
     - name: Destroy Google Cloud Function
       shell: bash
       run: |
-        gcloud --quiet functions delete ${{ inputs.name }}
+        gcloud --quiet functions delete ${{ inputs.name }} --region ${{ inputs.region }}
