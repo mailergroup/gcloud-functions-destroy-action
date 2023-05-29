@@ -16,10 +16,10 @@ A GitHub action to delete Google Cloud Functions
 ## HTTP-triggered GCF with VPC connector
 
 ``` yaml
-- uses: remotecompany/gcloud-functions-destroy-action@main
+- uses: mailergroup/gcloud-functions-destroy-action@main
   with:
     service_account_key: ${{ secrets.GOOGLE_SERVICE_KEY }}
-    project: "remotecompany"
+    project: "mailergroup"
     name: "my-cloud-function"
     region: "europe-west1"
 ```
