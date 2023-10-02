@@ -19,7 +19,7 @@ A GitHub action to delete Google Cloud Functions
 - uses: mailergroup/gcloud-functions-destroy-action@main
   with:
     service_account_key: ${{ secrets.GOOGLE_SERVICE_KEY }}
-    project: "mailergroup"
+    project: "PROJECT_NAME"
     name: "my-cloud-function"
-    region: "europe-west1"
+    region: "REGION"
 ```
